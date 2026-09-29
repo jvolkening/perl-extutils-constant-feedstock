@@ -11,14 +11,14 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: generic
   number: 1
   # nothing provides perl >=5.32.1,<6.0a0 *_perl5 needed by perl-extutils-makemaker-7.36-pl5321hd8ed1ab_0
   script:
-    - perl Makefile.PL INSTALLDIRS=vendor NO_PERLLOCAL=1 NO_PACKLIST=1
-    - make
-    - make test
-    - make install VERBINST=1
+    - >-
+      perl Makefile.PL INSTALLDIRS=vendor NO_PERLLOCAL=1 NO_PACKLIST=1 MAKE=make
+      && make
+      && make test
+      && make install VERBINST=1
 
 requirements:
   build:
